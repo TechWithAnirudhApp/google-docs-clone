@@ -1,7 +1,8 @@
 const mongoose = require("mongoose")
 const Document = require("./Document")
 
-mongoose.connect("mongodb://localhost/google-docs-clone", {
+const uri = "mongodb+srv://admin:T6qA23yykQOJBpfb@anidocs-db.udp3u.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+mongoose.connect(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
@@ -10,9 +11,10 @@ mongoose.connect("mongodb://localhost/google-docs-clone", {
 
 const io = require("socket.io")(3001, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "*",
     methods: ["GET", "POST"],
   },
+  rejectUnauthorized: false
 })
 
 const defaultValue = ""
